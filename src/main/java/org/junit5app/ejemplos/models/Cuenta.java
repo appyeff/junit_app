@@ -15,6 +15,8 @@ public class Cuenta {
         this.saldo = saldo;
     }
 
+    public Cuenta(){}
+
     public String getPersona() {
         return persona;
     }
@@ -40,7 +42,7 @@ public class Cuenta {
     }
 
     public void debito(BigDecimal monto) {
-        BigDecimal nuevoSaldo = this.saldo = this.saldo.subtract(monto);
+        BigDecimal nuevoSaldo = this.saldo.subtract(monto);
         if (nuevoSaldo.compareTo(BigDecimal.ZERO) < 0) {
             throw new DineroInsuficienteException("Dinero Insuficiente");
         }
@@ -53,7 +55,7 @@ public class Cuenta {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj == null || !(obj instanceof Cuenta)) {
+        if(!(obj instanceof Cuenta)) {
             return false;
         }
         Cuenta c = (Cuenta) obj;
